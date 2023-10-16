@@ -11,6 +11,7 @@
   "dependencies": {
     "@iconify/react": "^4.1.1",
     "@iconify/types": "^2.0.0",
+    "@prisma/client": "5.4.2",
     "@radix-ui/themes": "^2.0.0",
     "@reduxjs/toolkit": "^1.9.6",
     "class-variance-authority": "^0.7.0",
@@ -33,6 +34,7 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
+    "prisma": "^5.4.2",
     "tailwindcss": "latest",
     "typescript": "latest"
   }
