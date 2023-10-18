@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^1.9.6",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "easymde": "^2.18.0",
     "lucide-react": "^0.279.0",
     "next": "latest",
     "next-themes": "^0.2.1",
@@ -23,6 +24,7 @@
     "react-dom": "latest",
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.2",
+    "react-simplemde-editor": "^5.2.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
