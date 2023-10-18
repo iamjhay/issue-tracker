@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@iconify/react": "^4.1.1",
     "@iconify/types": "^2.0.0",
     "@prisma/client": "5.4.2",
