@@ -1,14 +1,13 @@
 import "@radix-ui/themes/styles.css";
+import "./theme-config.css";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Poppins } from "next/font/google";
-import { Nunito_Sans } from "next/font/google";
+import { Inter, Poppins, Nunito_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import NavBar from "./Navbar";
-import { Theme } from "@radix-ui/themes";
+import { Container, Theme, ThemePanel } from "@radix-ui/themes";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -32,10 +31,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, poppins.variable, nunito.variable)}>
-        <Theme>
+      <body className={cn(inter.variable, poppins.variable, nunito.variable)}>
+        <Theme appearance="light" accentColor="plum" grayColor="gray">
           <NavBar />
-          {children}
+          <main className="p-5">
+            <Container>{children}</Container>
+          </main>
         </Theme>
       </body>
     </html>
