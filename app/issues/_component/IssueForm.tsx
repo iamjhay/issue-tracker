@@ -1,17 +1,16 @@
 "use client";
-import { Button, Callout, TextField } from "@radix-ui/themes";
-import { useRouter } from "next/navigation";
-// import SimpleMDE from "react-simplemde-editor";
 import { ErrorMessage, Spinner } from "@/app/component";
 import { IssueSchema } from "@/app/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Issue } from "@prisma/client";
+import { Button, Callout, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
-import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 
 type IssueFormProps = z.infer<typeof IssueSchema>;
@@ -46,9 +45,9 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   });
 
   // for lazy loading a component, we disable SSR
-  const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-    ssr: false,
-  });
+  // const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  //   ssr: false,
+  // });
 
   return (
     <div className="max-w-3xl">
