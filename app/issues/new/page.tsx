@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Button, Callout, Text, TextField } from "@radix-ui/themes";
-import SimpleMDE from "react-simplemde-editor";
+// import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchema";
 import ErrorMessage from "@/app/component/ErrorMessage";
 import Spinner from "@/app/component/Spinner";
+import dynamic from "next/dynamic";
 
 type IssueFormProps = z.infer<typeof createIssueSchema>;
 
@@ -38,6 +39,11 @@ const NewIssuePage = () => {
       setSubmitting(false);
       setError("An Unexpected error occured");
     }
+  });
+
+  // for lazy loading a component, we disable SSR
+  const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+    ssr: false,
   });
 
   return (
