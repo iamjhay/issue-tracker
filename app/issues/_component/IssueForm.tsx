@@ -3,8 +3,9 @@ import { Button, Callout, TextField } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 // import SimpleMDE from "react-simplemde-editor";
 import { ErrorMessage, Spinner } from "@/app/component";
-import { createIssueSchema } from "@/app/validationSchema";
+import { IssueSchema } from "@/app/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Issue } from "@prisma/client";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import dynamic from "next/dynamic";
@@ -12,11 +13,10 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { z } from "zod";
-import { Issue } from "@prisma/client";
 
-type IssueFormProps = z.infer<typeof createIssueSchema>;
+type IssueFormProps = z.infer<typeof IssueSchema>;
 
-const IssueForm = ({ issue }: { issue?: Issue | null }) => {
+const IssueForm = ({ issue }: { issue?: Issue }) => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -26,7 +26,7 @@ const IssueForm = ({ issue }: { issue?: Issue | null }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IssueFormProps>({
-    resolver: zodResolver(createIssueSchema),
+    resolver: zodResolver(IssueSchema),
   });
 
   const onSubmit = handleSubmit(async (data) => {
