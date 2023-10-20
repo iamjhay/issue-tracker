@@ -1,7 +1,10 @@
 "use client";
 import { AlertDialog, Button } from "@radix-ui/themes";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
+  const router = useRouter();
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger>
@@ -20,7 +23,16 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
             <Button variant="soft">Cancel</Button>
           </AlertDialog.Cancel>
           <AlertDialog.Action>
-            <Button color="red">Yes, delete account</Button>
+            <Button
+              color="red"
+              onClick={async () => {
+                await axios.delete("/api/issues/" + issueId);
+                router.push("/issues");
+                router.refresh();
+              }}
+            >
+              Yes, delete account
+            </Button>
           </AlertDialog.Action>
         </div>
       </AlertDialog.Content>
