@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { Select } from "@radix-ui/themes";
 import { SelectItem } from "@radix-ui/themes";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { User } from "@prisma/client";
 import axios from "axios";
 
