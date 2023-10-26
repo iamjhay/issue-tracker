@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { AiFillBug } from "react-icons/ai";
 import classnames from "classnames";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import {
   Avatar,
   Box,
@@ -68,30 +68,44 @@ const AuthStatus = () => {
 
   if (status === "unauthenticated")
     return (
-      <Link className="nav-link" href="/api/auth/signin">
-        Login
-      </Link>
+      <div className="flex items-center gap-4">
+        <Link className="nav-link text-[14px]" href="/auth/login">
+          Login
+        </Link>
+        <Link
+          className="nav-link bg-fuchsia-300 px-2 py-0.5 rounded-full text-[14px] cursor-pointer"
+          href="/auth/register"
+        >
+          Register
+        </Link>
+      </div>
     );
 
   return (
     <Box>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
-          <Avatar
-            src={session!.user!.image!}
-            fallback="?"
-            size="2"
-            radius="full"
-            className="cursor-pointer"
-            referrerPolicy="no-referrer"
-          />
+          {session?.user?.image !== null ? (
+            <Avatar
+              src={session!.user!.image!}
+              fallback="?"
+              size="2"
+              radius="full"
+              className="cursor-pointer"
+              referrerPolicy="no-referrer"
+            />
+          ) : (
+            <span className="h-7 w-7 text-center rounded-full bg-fuchsia-300 cursor-pointer">
+              {session?.user?.name?.charAt(0)}
+            </span>
+          )}
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
           <DropdownMenu.Label>
             <Text size="2">{session!.user!.email}</Text>
           </DropdownMenu.Label>
           <DropdownMenu.Item>
-            <Link href="/api/auth/signout">Log out</Link>
+            <span onClick={() => signOut()}>Log out</span>
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>

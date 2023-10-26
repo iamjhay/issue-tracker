@@ -7,7 +7,7 @@ const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
 
   return (
-    <div>
+    <div className="w-full">
       <IssuesToolbar />
       <Table.Root variant="surface">
         <Table.Header>
@@ -40,6 +40,12 @@ const IssuesPage = async () => {
           ))}
         </Table.Body>
       </Table.Root>
+
+      {issues.length === 0 && (
+        <span className="text-center w-full flex items-center justify-center py-2 mt-4">
+          There are no issues avalable!
+        </span>
+      )}
     </div>
   );
 };
