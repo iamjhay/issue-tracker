@@ -1,13 +1,15 @@
-import { Button } from "@radix-ui/themes";
+import { Button, Flex } from "@radix-ui/themes";
 import Link from "next/link";
+import IssueStatusFilter from "./issueStatusFilter";
 
 const IssuesToolbar = () => {
   return (
-    <div className="mb-5">
+    <Flex justify={"between"} className="mb-5">
+      <IssueStatusFilter />
       <Button variant="soft">
         <Link href="/issues/new">New Issues</Link>
       </Button>
-    </div>
+    </Flex>
   );
 };
 

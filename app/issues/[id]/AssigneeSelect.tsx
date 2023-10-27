@@ -21,7 +21,7 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
           assignedToUserId: null,
         })
         .then(() => {
-          toast.success("Assigned successfully!");
+          toast.success("Changes Saved - User UnAssigned!");
         })
         .catch(() => {
           toast.error("Changes could not be saved");
